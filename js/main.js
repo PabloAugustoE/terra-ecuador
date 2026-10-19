@@ -1,306 +1,314 @@
-// ==========================================
-// SCRIPT MAESTRO: TERRA ECUADOR (OPTIMIZADO)
-// ==========================================
+/* ==========================================================================
+   TERRA ECUADOR - SCRIPT PRINCIPAL OPTIMIZADO (3D MÓVIL Y FILTROS RESPONSIVE)
+   ========================================================================== */
 
-// Envolvemos todo en DOMContentLoaded para que espere a que el HTML cargue primero
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. MENÚ DE NAVEGACIÓN INTELIGENTE (SCROLL) ---
-    const navbar = document.querySelector('nav');
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (!navbar.classList.contains('nav-internal')) {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('nav-scrolled');
-                } else {
-                    navbar.classList.remove('nav-scrolled');
-                }
-            }
-        });
-    }
+    /* --- 1. TORRE 3D INTERACTIVA EN THREE.JS (AJUSTADA PARA MÓVILES) --- */
+    const canvasContainer = document.getElementById('heroCanvas');
 
-    // --- 2. LOGICA DE LA PORTADA (INTERACCIÓN SHOWCASE) ---
-    const showcaseItems = document.querySelectorAll('.showcase-item');
-    const showcaseImages = document.querySelectorAll('.showcase-img');
+    if (canvasContainer && typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
 
-    if (showcaseItems.length > 0) {
-        showcaseItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                showcaseItems.forEach(i => i.classList.remove('active'));
-                showcaseImages.forEach(img => img.classList.remove('active'));
-                
-                item.classList.add('active');
-                const imageId = item.getAttribute('data-image');
-                const targetImage = document.getElementById(imageId);
-                if (targetImage) targetImage.classList.add('active');
-            });
-        });
-    }
+        // Configuración responsive de Cámara
+        const isMobile = window.innerWidth <= 768;
+        const cameraFov = isMobile ? 60 : 45;
+        const cameraZ = isMobile ? 22 : 16;
+        const cameraY = isMobile ? -1 : 0;
 
-    // --- 3. TORRE 3D (PORTADA) ---
-    const heroCanvas = document.getElementById('heroCanvas');
-    if (heroCanvas && typeof THREE !== 'undefined') {
-        const sceneHero = new THREE.Scene();
-        const cameraHero = new THREE.PerspectiveCamera(30, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 1000);
-        cameraHero.position.set(0, 0, 48); 
+        const camera = new THREE.PerspectiveCamera(
+            cameraFov, 
+            canvasContainer.clientWidth / canvasContainer.clientHeight, 
+            0.1, 
+            1000
+        );
+        camera.position.set(0, cameraY, cameraZ);
 
-        const rendererHero = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        rendererHero.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-        rendererHero.setPixelRatio(window.devicePixelRatio);
-        heroCanvas.appendChild(rendererHero.domElement);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        canvasContainer.appendChild(renderer.domElement);
 
-        const sunLight = new THREE.DirectionalLight(0xffffff, 1.2); 
-        sunLight.position.set(10, 20, 10);
-        sceneHero.add(sunLight);
-        
-        const ambientLightHero = new THREE.AmbientLight(0xffffff, 0.6); 
-        sceneHero.add(ambientLightHero);
+        // Iluminación
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
 
-        const slabMaterial = new THREE.MeshPhongMaterial({ color: 0x1a1a1a, specular: 0xC9A84C, shininess: 50 });
-        const glassDayMat = new THREE.MeshPhongMaterial({ color: 0xaabbff, transparent: true, opacity: 0.6, shininess: 150 });
+        const dirLight = new THREE.DirectionalLight(0xC9A84C, 1.8);
+        dirLight.position.set(10, 20, 15);
+        scene.add(dirLight);
 
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        fillLight.position.set(-10, -10, -10);
+        scene.add(fillLight);
+
+        // Grupo Principal de la Torre
         const towerGroup = new THREE.Group();
-        sceneHero.add(towerGroup);
+        scene.add(towerGroup);
 
-        const pisos = 11;
-        const baseBuilding = new THREE.Mesh(new THREE.BoxGeometry(6, 1, 6), slabMaterial);
-        towerGroup.add(baseBuilding);
+        // Materiales
+        const glassMaterial = new THREE.MeshStandardMaterial({
+            color: 0x111111,
+            metalness: 0.9,
+            roughness: 0.1,
+            transparent: true,
+            opacity: 0.85
+        });
 
-        for (let i = 1; i <= pisos; i++) {
-            const slab = new THREE.Mesh(new THREE.BoxGeometry(5.5, 0.2, 5.5), slabMaterial);
-            slab.position.y = i * 1.5;
+        const goldEdgeMaterial = new THREE.LineBasicMaterial({
+            color: 0xC9A84C,
+            linewidth: 1.5
+        });
+
+        // Construcción paramétrica de la torre helicoidal
+        const floors = 22;
+        const baseRadius = isMobile ? 2.2 : 3.0; // Escalado más pequeño para móviles
+        const floorHeight = 0.55;
+
+        for (let i = 0; i < floors; i++) {
+            const factor = 1 - (i / floors) * 0.35;
+            const radius = baseRadius * factor;
             
-            const glass = new THREE.Mesh(new THREE.BoxGeometry(4.8, 1.3, 4.8), glassDayMat); 
-            glass.position.y = (i * 1.5) + 0.75;
+            const geometry = new THREE.CylinderGeometry(radius * 0.95, radius, floorHeight, 5);
+            const floorMesh = new THREE.Mesh(geometry, glassMaterial);
             
-            const rotacion = i * 0.08;
-            slab.rotation.y = rotacion; 
-            glass.rotation.y = rotacion;
-            
-            towerGroup.add(slab, glass);
+            floorMesh.position.y = (i - floors / 2) * (floorHeight + 0.05);
+            floorMesh.rotation.y = i * 0.12; 
+
+            // Bordes dorados
+            const edges = new THREE.EdgesGeometry(geometry);
+            const line = new THREE.LineSegments(edges, goldEdgeMaterial);
+            floorMesh.add(line);
+
+            towerGroup.add(floorMesh);
         }
-        
-        towerGroup.position.y = -8.5; 
-        towerGroup.position.x = 0;
 
-        function animateHero() {
-            requestAnimationFrame(animateHero);
-            if(towerGroup) towerGroup.rotation.y += 0.0035; 
-            rendererHero.render(sceneHero, cameraHero);
+        // Posición ajustada en móvil
+        if (isMobile) {
+            towerGroup.position.set(0, -1.5, 0);
+        } else {
+            towerGroup.position.set(1.5, -0.5, 0);
         }
-        animateHero();
 
+        // Interacción con mouse / touch
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+
+        function onPointerMove(event) {
+            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+
+            mouseX = (clientX - window.innerWidth / 2) * 0.0005;
+            mouseY = (clientY - window.innerHeight / 2) * 0.0005;
+        }
+
+        window.addEventListener('mousemove', onPointerMove, { passive: true });
+        window.addEventListener('touchmove', onPointerMove, { passive: true });
+
+        // Bucle de Renderizado
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotación automática + respuesta suave al toque/mouse
+            towerGroup.rotation.y += 0.005;
+            
+            targetRotationY += (mouseX - targetRotationY) * 0.05;
+            targetRotationX += (mouseY - targetRotationX) * 0.05;
+
+            towerGroup.rotation.y += targetRotationY * 0.1;
+            towerGroup.rotation.x = Math.max(-0.3, Math.min(0.3, targetRotationX));
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Responsive Resize
         window.addEventListener('resize', () => {
-            if (heroCanvas.clientWidth === 0) return; // Evitar errores si no es visible
-            cameraHero.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
-            cameraHero.updateProjectionMatrix();
-            rendererHero.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+            const mobileCheck = window.innerWidth <= 768;
+            camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+            camera.fov = mobileCheck ? 60 : 45;
+            camera.position.z = mobileCheck ? 22 : 16;
+            camera.updateProjectionMatrix();
+
+            if (mobileCheck) {
+                towerGroup.position.set(0, -1.5, 0);
+            } else {
+                towerGroup.position.set(1.5, -0.5, 0);
+            }
+
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
         });
     }
 
-    // --- 4. ANIMACIÓN DE CONTADORES (MÉTRICAS) ---
-    const metricasSection = document.querySelector('.metricas-impacto') || document.querySelector('#proyectos');
-    const counters = document.querySelectorAll('.counter, .metrica-num'); // Asegura capturar ambas clases
 
-    if (metricasSection && counters.length > 0) {
-        let animated = false;
+    /* --- 2. PESTAÑAS (COMPRAR / VENDER Y RENTAR / PONER EN RENTA) --- */
+    const setupTabs = (btn1Id, btn2Id, sec1Id, sec2Id) => {
+        const btn1 = document.getElementById(btn1Id);
+        const btn2 = document.getElementById(btn2Id);
+        const sec1 = document.getElementById(sec1Id);
+        const sec2 = document.getElementById(sec2Id);
 
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target') || parseInt(counter.innerText.replace(/,/g, ''));
-                    const count = +counter.innerText.replace(/,/g, '');
-                    const speed = 100;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc).toLocaleString('en-US');
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target.toLocaleString('en-US');
-                    }
-                };
-                
-                counter.innerText = '0';
-                updateCount();
+        if (btn1 && btn2 && sec1 && sec2) {
+            btn1.addEventListener('click', () => {
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+                sec1.style.display = 'grid';
+                sec2.style.display = 'none';
             });
-        };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animated) {
-                    animateCounters();
-                    animated = true;
+            btn2.addEventListener('click', () => {
+                btn2.classList.add('active');
+                btn1.classList.remove('active');
+                sec1.style.display = 'none';
+                sec2.style.display = 'block';
+            });
+        }
+    };
+
+    setupTabs('btnComprar', 'btnVender', 'seccionComprar', 'seccionVender');
+    setupTabs('btnRentar', 'btnPonerRenta', 'seccionRentar', 'seccionPonerRenta');
+
+
+    /* --- 3. SISTEMA DE FILTROS RESPONSIVE (COMPRA / VENTA Y RENTA) --- */
+    
+    // Toggle desplegable de la barra de filtros en móviles
+    const setupMobileSidebarToggle = (sidebarElem) => {
+        if (!sidebarElem) return;
+        
+        if (!sidebarElem.querySelector('.sidebar-toggle-btn')) {
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'sidebar-toggle-btn';
+            toggleBtn.type = 'button';
+            toggleBtn.innerHTML = '<span>Filtrar Propiedades ⚙️</span><span class="toggle-icon">▼</span>';
+            sidebarElem.insertBefore(toggleBtn, sidebarElem.firstChild);
+
+            toggleBtn.addEventListener('click', () => {
+                sidebarElem.classList.toggle('is-open');
+            });
+        }
+    };
+
+    const sidebars = document.querySelectorAll('.sidebar');
+    sidebars.forEach(sidebar => setupMobileSidebarToggle(sidebar));
+
+    // Lógica de filtrado de Compra
+    const btnAplicarFiltros = document.getElementById('btnAplicarFiltros');
+    if (btnAplicarFiltros) {
+        btnAplicarFiltros.addEventListener('click', () => {
+            const tiposChecked = Array.from(document.querySelectorAll('.filtro-tipo:checked')).map(cb => cb.value);
+            const zonaRadio = document.querySelector('.filtro-zona:checked')?.value || 'todos';
+            const estadosChecked = Array.from(document.querySelectorAll('.filtro-estado:checked')).map(cb => cb.value);
+            const provincia = document.getElementById('filtroProvincia')?.value || 'todas';
+
+            const tarjetas = document.querySelectorAll('.propiedad-item');
+            const msgSinResultados = document.getElementById('mensajeSinResultados');
+            let visibles = 0;
+
+            tarjetas.forEach(card => {
+                const tipoCard = card.dataset.tipo;
+                const zonaCard = card.dataset.zona;
+                const estadoCard = card.dataset.estado;
+                const provinciaCard = card.dataset.provincia;
+
+                const matchTipo = tiposChecked.length === 0 || tiposChecked.includes(tipoCard);
+                const matchZona = zonaRadio === 'todos' || zonaCard === zonaRadio;
+                const matchEstado = estadosChecked.length === 0 || estadosChecked.includes(estadoCard);
+                const matchProvincia = provincia === 'todas' || provinciaCard === provincia;
+
+                if (matchTipo && matchZona && matchEstado && matchProvincia) {
+                    card.classList.remove('hidden-card');
+                    visibles++;
+                } else {
+                    card.classList.add('hidden-card');
                 }
             });
-        }, { threshold: 0.5 });
 
-        observer.observe(metricasSection);
-    }
+            if (msgSinResultados) {
+                msgSinResultados.style.display = (visibles === 0) ? 'block' : 'none';
+            }
 
-    // --- 5. LÓGICA DE PÁGINAS INTERNAS (Tabs y Filtros) ---
-    function setupTabs(btnTab1, btnTab2, section1, section2) {
-        if (btnTab1 && btnTab2 && section1 && section2) {
-            btnTab1.addEventListener('click', () => {
-                btnTab1.classList.add('active'); btnTab2.classList.remove('active');
-                section1.style.display = 'grid'; section2.style.display = 'none';
-            });
-            btnTab2.addEventListener('click', () => {
-                btnTab2.classList.add('active'); btnTab1.classList.remove('active');
-                section1.style.display = 'none'; section2.style.display = 'block';
-            });
-        }
-    }
-
-    setupTabs(document.getElementById('btnComprar'), document.getElementById('btnVender'), document.getElementById('seccionComprar'), document.getElementById('seccionVender'));
-    setupTabs(document.getElementById('btnRentar'), document.getElementById('btnPonerRenta'), document.getElementById('seccionRentar'), document.getElementById('seccionPonerRenta'));
-
-    function setupFiltros(btnId, cardClass, emptyMsgId) {
-        const btn = document.getElementById(btnId);
-        if(btn) {
-            btn.addEventListener('click', () => {
-                const container = btn.closest('.catalog-layout'); 
-                if(!container) return;
-                
-                const tipos = Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
-                const zonaRadio = container.querySelector('input[type="radio"]:checked');
-                const zona = zonaRadio ? zonaRadio.value : 'todos';
-                const selectProv = container.querySelector('select');
-                const provincia = selectProv ? selectProv.value : 'todas';
-                const tarjetas = document.querySelectorAll(`.${cardClass}`);
-                const msgError = document.getElementById(emptyMsgId);
-                
-                const originalText = btn.innerHTML;
-                btn.innerHTML = 'Filtrando...';
-
-                setTimeout(() => {
-                    let visibles = 0;
-                    tarjetas.forEach(prop => {
-                        const t = prop.getAttribute('data-tipo');
-                        const z = prop.getAttribute('data-zona');
-                        const p = prop.getAttribute('data-provincia');
-                        const e = prop.getAttribute('data-estado'); 
-                        
-                        const coincideTipo = tipos.length === 0 || tipos.includes(t) || tipos.includes(e);
-                        const coincideZona = zona === 'todos' || zona === z;
-                        const coincideProvincia = provincia === 'todas' || provincia === p;
-
-                        if (coincideTipo && coincideZona && coincideProvincia) {
-                            prop.classList.remove('hidden-card'); visibles++;
-                        } else {
-                            prop.classList.add('hidden-card');
-                        }
-                    });
-
-                    if(msgError) msgError.style.display = visibles === 0 ? 'block' : 'none';
-                    btn.innerHTML = originalText;
-                }, 400);
-            });
-        }
-    }
-
-    setupFiltros('btnAplicarFiltros', 'propiedad-item', 'mensajeSinResultados');
-    setupFiltros('btnAplicarFiltrosRenta', 'propiedad-renta', 'mensajeSinRentas');
-
-    // --- 6. LÓGICA DEL FORMULARIO DE CONTACTO ---
-    const contactForm = document.getElementById('terraContactForm');
-    const successMessage = document.getElementById('successMessage');
-    const btnSubmit = document.getElementById('btnSubmitContact');
-
-    if (contactForm && btnSubmit && successMessage) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const originalText = btnSubmit.innerHTML;
-            btnSubmit.innerHTML = 'ENVIANDO...';
-            btnSubmit.style.opacity = '0.7';
-            btnSubmit.disabled = true;
-
-            setTimeout(() => {
-                successMessage.style.display = 'block';
-                contactForm.reset();
-                btnSubmit.innerHTML = originalText;
-                btnSubmit.style.opacity = '1';
-                btnSubmit.disabled = false;
-
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 8000);
-            }, 1500);
+            // En móvil, cerrar la barra desplegable tras aplicar filtros para ver los resultados
+            if (window.innerWidth <= 992) {
+                const sidebarComp = btnAplicarFiltros.closest('.sidebar');
+                if (sidebarComp) sidebarComp.classList.remove('is-open');
+            }
         });
     }
 
-    // --- 7. INTERACTIVIDAD PÁGINA CONSTRUCCIÓN ---
-    
-    // 7.1 Plano Interactivo
-    const rooms = document.querySelectorAll('.room-path');
-    const titleDisplay = document.querySelector('.room-title-display');
-    const descDisplay = document.querySelector('.room-desc-display');
-    const iconDisplay = document.querySelector('.room-icon-display');
+    // Lógica de filtrado de Renta
+    const btnAplicarFiltrosRenta = document.getElementById('btnAplicarFiltrosRenta');
+    if (btnAplicarFiltrosRenta) {
+        btnAplicarFiltrosRenta.addEventListener('click', () => {
+            const tiposRenta = Array.from(document.querySelectorAll('.filtro-tipo-renta:checked')).map(cb => cb.value);
+            const zonaRenta = document.querySelector('.filtro-zona-renta:checked')?.value || 'todos';
+            const provinciaRenta = document.getElementById('filtroProvinciaRenta')?.value || 'todas';
 
-    if (rooms.length > 0 && titleDisplay && descDisplay) {
-        rooms.forEach(room => {
-            room.addEventListener('click', function() {
-                rooms.forEach(r => r.classList.remove('active'));
-                this.classList.add('active');
-                titleDisplay.textContent = this.getAttribute('data-title');
-                descDisplay.textContent = this.getAttribute('data-desc');
-                iconDisplay.textContent = this.getAttribute('data-icon');
+            const tarjetasRenta = document.querySelectorAll('.propiedad-renta');
+            const msgSinRentas = document.getElementById('mensajeSinRentas');
+            let visiblesRenta = 0;
+
+            tarjetasRenta.forEach(card => {
+                const tipoCard = card.dataset.tipo;
+                const zonaCard = card.dataset.zona;
+                const provinciaCard = card.dataset.provincia;
+
+                const matchTipo = tiposRenta.length === 0 || tiposRenta.includes(tipoCard);
+                const matchZona = zonaRenta === 'todos' || zonaCard === zonaRenta;
+                const matchProvincia = provinciaRenta === 'todas' || provinciaCard === provinciaRenta;
+
+                if (matchTipo && matchZona && matchProvincia) {
+                    card.classList.remove('hidden-card');
+                    visiblesRenta++;
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+
+            if (msgSinRentas) {
+                msgSinRentas.style.display = (visiblesRenta === 0) ? 'block' : 'none';
+            }
+
+            // En móvil, cerrar la barra desplegable tras aplicar filtros
+            if (window.innerWidth <= 992) {
+                const sidebarRenta = btnAplicarFiltrosRenta.closest('.sidebar');
+                if (sidebarRenta) sidebarRenta.classList.remove('is-open');
+            }
+        });
+    }
+
+
+    /* --- 4. PLANO INTERACTIVO Y NAVEGACIÓN --- */
+    const roomPaths = document.querySelectorAll('.room-path');
+    const roomInfoContent = document.getElementById('roomInfoContent');
+
+    if (roomPaths.length > 0 && roomInfoContent) {
+        roomPaths.forEach(path => {
+            path.addEventListener('click', () => {
+                roomPaths.forEach(p => p.classList.remove('active'));
+                path.classList.add('active');
+
+                const title = path.dataset.title || 'Sección';
+                const desc = path.dataset.desc || 'Información de la sección.';
+                const icon = path.dataset.icon || '🏛️';
+
+                roomInfoContent.innerHTML = `
+                    <div class="room-icon-display">${icon}</div>
+                    <h3 class="room-title-display">${title}</h3>
+                    <p class="room-desc-display">${desc}</p>
+                `;
             });
         });
     }
 
-    // 7.2 Escáner de Materialización (Antes y Después)
-    const escanerContainer = document.getElementById('escanerContainer');
-    const imgVision = document.getElementById('imgVision');
-    const escanerLaser = document.getElementById('escanerLaser');
-
-    if (escanerContainer && imgVision && escanerLaser) {
-        let isDragging = false;
-
-        const moveScanner = (e) => {
-            const rect = escanerContainer.getBoundingClientRect();
-            let clientX = 0;
-            
-            if (e.type.includes('touch')) {
-                clientX = e.touches[0].clientX;
+    // Menú flotante Scroll
+    const mainNav = document.querySelector('nav');
+    if (mainNav && !mainNav.classList.contains('nav-internal')) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainNav.classList.add('nav-scrolled');
             } else {
-                clientX = e.clientX;
+                mainNav.classList.remove('nav-scrolled');
             }
-            
-            let xPos = clientX - rect.left;
-            if (xPos < 0) xPos = 0;
-            if (xPos > rect.width) xPos = rect.width;
-
-            let percentage = (xPos / rect.width) * 100;
-            escanerLaser.style.left = `${percentage}%`;
-            
-            imgVision.style.webkitClipPath = `inset(0 ${100 - percentage}% 0 0)`;
-            imgVision.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-        };
-
-        escanerContainer.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            moveScanner(e); 
-        });
-        window.addEventListener('mouseup', () => isDragging = false);
-        window.addEventListener('mousemove', (e) => {
-            if (isDragging) moveScanner(e);
-        });
-
-        escanerContainer.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            moveScanner(e);
         }, { passive: true });
-        
-        window.addEventListener('touchend', () => isDragging = false);
-        
-        escanerContainer.addEventListener('touchmove', (e) => {
-            if (isDragging) {
-                e.preventDefault(); 
-                moveScanner(e);
-            }
-        }, { passive: false });
     }
-
-}); // Fin del DOMContentLoaded
-
+});
