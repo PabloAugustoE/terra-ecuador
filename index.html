@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERRA Ecuador | Inmobiliaria & Ingeniería</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">TERRA <span>Ecuador</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" style="color: var(--gold) !important;">Inicio</a></li>
+                <li><a href="compra-venta.html">Compra/Venta</a></li>
+                <li><a href="renta.html">En Renta</a></li>
+                <li><a href="construccion.html">Construcción</a></li>
+            </ul>
+            <a href="#contacto" class="btn-nav">Contactar</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        
+        <video autoplay loop muted class="hero-video-bg">
+            <source src="assets/videos/nubes.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="hero-grid" id="parallaxGrid"></div>
+        
+        <div class="container hero-layout">
+            <div class="hero-content">
+                <div class="hero-badge reveal text-dark">Ingeniería & Inmobiliaria Real</div>
+                <h1 class="hero-title reveal text-dark" style="transition-delay: 0.1s;">
+                    <em>Cimientos sólidos,</em><br>
+                    <strong>vidas plenas.</strong>
+                </h1>
+                <p class="hero-subtitle reveal text-dark" style="transition-delay: 0.2s;">
+                    Fusionamos precisión estructural con estética de vanguardia. Desde el austro ecuatoriano, desarrollamos espacios habitables que redefinen el bienestar.
+                </p>
+                
+                <div class="hero-actions reveal" style="transition-delay: 0.3s;">
+                    <div class="hero-actions-wrapper">
+                        <div class="hero-main-btns">
+                            <a href="#portales" class="btn-solid-dark">COMPRAR INMUEBLE</a>
+                            <a href="renta.html" class="btn-outline-light">PONER EN RENTA</a>
+                        </div>
+                        
+                        <div class="hero-social-quicklinks">
+                            <a href="https://instagram.com" target="_blank" class="btn-social-outline" title="Síguenos en Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://facebook.com" target="_blank" class="btn-social-outline" title="Síguenos en Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://wa.me/593990000000" target="_blank" class="btn-social-outline btn-whatsapp-outline" title="Chatea por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <div class="hero-3d-wrapper reveal" style="transition-delay: 0.4s;">
+                <div id="heroCanvas"></div>
+            </div>
+        </div> <div class="scroll-indicator reveal text-dark" style="transition-delay: 0.6s;">
+            <div class="mouse mouse-dark"></div>
+            <span>Explorar</span>
+        </div>
+    </section>
+
+    <section class="galeria-continua">
+        <div class="galeria-track">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 1">
+            <img src="https://images.unsplash.com/photo-1613490908653-b0ea6bc537c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 2">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 3">
+            <img src="https://images.unsplash.com/photo-1541888088320-be1a221f7a1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 4">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 5">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proyecto TERRA 6">
+        </div>
+    </section>
+
+    <section id="portales" style="padding: 8rem 5%; background: var(--dark-2);">
+        
+        <div style="text-align: center; margin-bottom: 5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="section-tag" style="justify-content: center; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem;">Nuestras Divisiones</div>
+            <h2 class="section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--cream);">Tenemos lo que <em style="color: var(--gold);">buscas.</em></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-top: 1.5rem;">
+                Navega por nuestras líneas de negocio diseñadas para tu crecimiento: un <strong>catálogo curado</strong> de lotes, haciendas y residencias premium; opciones de <strong>arrendamiento</strong> listas para ti; y ejecución experta de <strong>construcción</strong> con planos 3D y maquinaria. Selecciona tu portal para comenzar.
+            </p>
+        </div>
+
+        <div class="showcase-container">
+            <ul class="showcase-list">
+                <li class="showcase-item active" data-image="img-compra">
+                    <a href="compra-venta.html">
+                        <span class="num">01</span>
+                        <h3>Compra & Venta</h3>
+                        <p>Catálogo curado de lotes, haciendas y residencias premium.</p>
+                    </a>
+                </li>
+                <li class="showcase-item" data-image="img-renta">
+                    <a href="renta.html">
+                        <span class="num">02</span>
+                        <h3>Arrendamiento</h3>
+                        <p>Viviendas y espacios comerciales listos para ti.</p>
+                    </a>
+                </li>
+                <li class="showcase-item" data-image="img-construccion">
+                    <a href="construccion.html">
+                        <span class="num">03</span>
+                        <h3>Construcción</h3>
+                        <p>Planos 3D, maquinaria y ejecución de obras civiles.</p>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="showcase-images">
+                <div class="showcase-img active" id="img-compra" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="showcase-img" id="img-renta" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="showcase-img" id="img-construccion" style="background-image: url('https://images.unsplash.com/photo-1541888088320-be1a221f7a1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inversiones-premium">
+        <div class="inversiones-header">
+            <span class="inversiones-tag">Inversiones</span>
+            <h2 class="inversiones-title">OPORTUNIDADES DE INVERSIÓN PREMIUM</h2>
+            <p class="inversiones-desc">Descubre nuestro portafolio exclusivo de desarrollos y asegura tu inversión con rendimientos superiores al mercado en el austro ecuatoriano.</p>
+        </div>
+
+        <div class="inversiones-grid">
+            
+            <div class="card-inversion">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyecto 1">
+                </div>
+                <div class="card-badge">PR</div> 
+                
+                <div class="card-body">
+                    <h3>PASEO REAL</h3>
+                    <p class="location"><span style="opacity: 0.6;">📍</span> El Tambo, Cañar.</p>
+                    <p class="tagline">Una urbanización privada frente al valle.</p>
+                    <ul class="features">
+                        <li><span>📐</span> 86 Lotes Residenciales, 3 villas, 6 Niveles.</li>
+                        <li><span>✨</span> Acceso controlado, Casa Club, Áreas Verdes.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#">CONOCE MÁS</a>
+                </div>
+            </div>
+
+            <div class="card-inversion">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1613490908653-b0ea6bc537c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyecto 2">
+                </div>
+                <div class="card-badge" style="background-color: #1a252f;">TR</div>
+                
+                <div class="card-body">
+                    <h3>TORRE RUSTICA</h3>
+                    <p class="location"><span style="opacity: 0.6;">📍</span> Panamericana Sur.</p>
+                    <p class="tagline">Vivienda + oficinas + comercio.</p>
+                    <ul class="features">
+                        <li><span>🏢</span> 21 niveles, 106 deptos., 3 elevadores.</li>
+                        <li><span>🛍️</span> Locales comerciales exclusivos.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#">CONOCE MÁS</a>
+                </div>
+            </div>
+
+            <div class="card-inversion">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyecto 3">
+                </div>
+                <div class="card-badge" style="background-color: var(--gold); color: #000;">NV</div>
+                
+                <div class="card-body">
+                    <h3>NUBARA VALLE</h3>
+                    <p class="location"><span style="opacity: 0.6;">📍</span> Suscal, Cañar.</p>
+                    <p class="tagline">Donde las montañas abrazan tu hogar.</p>
+                    <ul class="features">
+                        <li><span>🏘️</span> 2 torres, 20 niveles, 225 deptos.</li>
+                        <li><span>🚗</span> +10 amenidades, 394 parqueos.</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#">CONOCE MÁS</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <section class="experiencia-terra">
+        <div class="experiencia-header">
+            <div class="experiencia-logo-central">
+                <span style="font-size: 2.5rem; color: var(--gold);">🏛️</span>
+            </div>
+            
+            <span class="experiencia-tag">Nuestra Esencia</span>
+            <h2 class="experiencia-title">TERRA ECUADOR: LA FUERZA QUE MATERIALIZA TU PATRIMONIO</h2>
+            <p class="experiencia-desc">
+                Con raíces firmes en El Tambo, Cañar, integramos manufactura de materiales, desarrollo arquitectónico y comercialización inmobiliaria para entregar proyectos llave en mano con valor a largo plazo en todo el austro.
+            </p>
+        </div>
+
+        <div class="experiencia-grid">
+            <div class="experiencia-item">
+                <div class="exp-icon">⚙️</div>
+                <h3>PRODUCCIÓN PROPIA</h3>
+                <p>Nuestra división cuenta con una planta bloquera y maquinaria especializada, garantizando calidad estructural desde el minuto cero de la obra y optimizando tiempos de entrega.</p>
+            </div>
+
+            <div class="experiencia-item">
+                <div class="exp-icon">📐</div>
+                <h3>METODOLOGÍA INTEGRAL 360°</h3>
+                <p>Abarcamos el ciclo completo: desde la viabilidad y el levantamiento topográfico, hasta el diseño 3D, ejecución civil y corretaje final del inmueble.</p>
+            </div>
+
+            <div class="experiencia-item">
+                <div class="exp-icon">📈</div>
+                <h3>VISIÓN DE INVERSIÓN</h3>
+                <p>No solo construimos paredes; estructuramos legados. Asesoramos tu capital para maximizar el retorno de inversión en el dinámico mercado de bienes raíces ecuatoriano.</p>
+            </div>
+        </div>
+
+        <div class="experiencia-footer">
+            <a href="#contacto" class="btn-outline-gold">CONOCE MÁS SOBRE TERRA</a>
+        </div>
+    </section>
+
+    <section class="metricas-impacto">
+        <div class="metricas-header">
+            <span class="metricas-tag">Proyectos</span>
+            <h2 class="metricas-title">ESPACIOS QUE INSPIRAN</h2>
+            <p class="metricas-desc">
+                Aquí encontrarás desarrollos que combinan diseño, funcionalidad y propósito. Marcando la pauta en el desarrollo inmobiliario y constructivo del austro ecuatoriano.
+            </p>
+        </div>
+
+        <div class="metricas-grid">
+            <div class="metrica-item">
+                <div class="metrica-valor">
+                    <span class="metrica-prefix">+</span>
+                    <span class="metrica-num counter" data-target="15">0</span>
+                </div>
+                <span class="metrica-text">Años de Liderazgo</span>
+            </div>
+            
+            <div class="metrica-item">
+                <div class="metrica-valor">
+                    <span class="metrica-prefix">+</span>
+                    <span class="metrica-num counter" data-target="1200">0</span>
+                </div>
+                <span class="metrica-text">Proyectos Ejecutados</span>
+            </div>
+            
+            <div class="metrica-item">
+                <div class="metrica-valor">
+                    <span class="metrica-num counter" data-target="360">0</span>
+                    <span class="metrica-suffix">°</span>
+                </div>
+                <span class="metrica-text">Gestión Integral</span>
+            </div>
+        </div>
+
+        <div class="metricas-footer">
+            <a href="#contacto" class="btn-outline-light">DESEO INVERTIR EN UN PROYECTO</a>
+        </div>
+    </section>
+    
+    <section id="contacto" class="contacto-premium">
+        <div class="contacto-container">
+            
+            <div class="contacto-form-wrapper">
+                <h2 class="contacto-title">SOLICITA MÁS INFORMACIÓN</h2>
+                <p class="contacto-desc">Completa el formulario y un asesor especializado de TERRA te contactará para resolver todas tus dudas.</p>
+                
+                <form id="terraContactForm" class="terra-form">
+                    <div class="form-row-2">
+                        <div class="input-group">
+                            <label>Nombre/s *</label>
+                            <input type="text" required placeholder="Escribe aquí tu nombre">
+                        </div>
+                        <div class="input-group">
+                            <label>Apellido/s *</label>
+                            <input type="text" required placeholder="Escribe aquí tus apellidos">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Número de teléfono *</label>
+                        <input type="tel" required placeholder="Ej: +593 99 000 0000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Email *</label>
+                        <input type="email" required placeholder="Escribe aquí tu correo electrónico">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Monto estimado de inversión</label>
+                        <input type="text" placeholder="$ USD">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Proyecto de mi interés</label>
+                        <select>
+                            <option value="">Selecciona un proyecto</option>
+                            <option value="paseo_real">Paseo Real</option>
+                            <option value="torre_rustica">Torre Rustica</option>
+                            <option value="nubara_valle">Nubara Valle</option>
+                            <option value="construccion">Servicios de Construcción</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Mensaje *</label>
+                        <textarea required placeholder="Escribe aquí tu mensaje" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" required>
+                        <label for="privacy">Acepto la <a href="#">política de privacidad</a></label>
+                    </div>
+                    
+                    <div class="mock-captcha">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" id="captcha-check" required>
+                            <label for="captcha-check" style="font-weight: 500; font-size: 0.9rem; color: var(--cream);">No soy un robot</label>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png" alt="reCAPTCHA" height="30" style="opacity: 0.8; filter: grayscale(1) invert(1);">
+                    </div>
+
+                    <button type="submit" class="btn-submit-gold" id="btnSubmitContact">ENVIAR MENSAJE</button>
+                    
+                    <div id="successMessage" class="success-msg">
+                        El mensaje fue enviado correctamente, en breve nos estaremos comunicando contigo.
+                    </div>
+                </form>
+            </div>
+
+            <div class="contacto-social-wrapper">
+                <h2 class="contacto-title">TE ESPERO EN MIS REDES</h2>
+                <p class="contacto-desc">Mis redes sociales son como mi oficina abierta: ahí platico sobre lo que pasa en bienes raíces, comparto el avance de obras y me gusta conocer a las personas que siguen mi trabajo. ¡Ven a platicar conmigo!</p>
+                
+                <div class="social-grid">
+                    <a href="https://instagram.com" target="_blank" class="social-link">
+                        <span class="social-icon">📸</span>
+                        <span class="social-name">@terra.ecuador</span>
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" class="social-link">
+                        <span class="social-icon">🎵</span>
+                        <span class="social-name">@terra.ecuador</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-link">
+                        <span class="social-icon">▶️</span>
+                        <span class="social-name">TERRA Desarrollos</span>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link">
+                        <span class="social-icon">💼</span>
+                        <span class="social-name">TERRA Ecuador</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display: inline-block; margin-bottom: 2rem; font-size: 2rem; color: var(--cream);">TERRA <span style="color: var(--gold);">Ecuador</span></a>
+                <h4>Más TERRA</h4>
+                <ul>
+                    <li><a href="#">Inmuebles en Ecuador</a></li>
+                    <li><a href="#">Publicar tu Inmueble</a></li>
+                    <li><a href="#">Ayuda y Soporte</a></li>
+                    <li><a href="#">Mapa del sitio</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Divisiones</h4>
+                <ul>
+                    <li><a href="compra-venta.html">Inmobiliaria & Corretaje</a></li>
+                    <li><a href="construccion.html">Constructora & Obras Civiles</a></li>
+                    <li><a href="#">Planta Bloquera y Materiales</a></li>
+                    <li><a href="#">Centro de Servicios Múltiples</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Cobertura</h4>
+                <ul>
+                    <li><a href="#">Cañar: El Tambo, Suscal</a></li>
+                    <li><a href="#">Azuay: Cuenca, Paute</a></li>
+                    <li><a href="#">Guayas: Guayaquil, Samborondón</a></li>
+                    <li><a href="#">Pichincha: Quito, Cumbayá</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank">FB</a>
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+                
+                <h4 style="margin-top: 2rem;">Apps</h4>
+                <div class="footer-apps">
+                    <a href="#" class="app-btn">
+                        <span class="icon">🍎</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <span class="icon">▶️</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-brand-group">
+                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; line-height: 1;">Grupo<br>TERRA</span>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; Copyright 2026 terraecuador.com</p>
+                    <p>
+                        <a href="#">Términos de Uso</a> &nbsp;|&nbsp; 
+                        <a href="#">Condiciones de Contratación</a> &nbsp;|&nbsp; 
+                        <a href="#">Política de privacidad</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

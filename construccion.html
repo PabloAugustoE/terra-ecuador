@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construcción e Ingeniería | TERRA Ecuador</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+
+    <nav class="nav-internal"> 
+        <div class="nav-container">
+            <a href="index.html" class="logo">TERRA <span>Ecuador</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="compra-venta.html">Compra/Venta</a></li>
+                <li><a href="renta.html">En Renta</a></li>
+                <li><a href="construccion.html" style="color: var(--gold) !important;">Construcción</a></li>
+            </ul>
+            
+            <a href="index.html#contacto" class="btn-nav">Contactar</a>
+        </div>
+    </nav>
+
+    <section class="page-header" style="background: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)), url('https://images.unsplash.com/photo-1541888088320-be1a221f7a1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; padding: 12rem 5% 6rem;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <span class="experiencia-tag">División de Obras</span>
+            <h1 class="experiencia-title" style="font-size: 3.5rem;">Construcción & <em>Ingeniería</em></h1>
+            <p class="experiencia-desc" style="color: var(--cream);">Desde el movimiento de tierras hasta el último acabado. Construimos el futuro del austro ecuatoriano con precisión milimétrica.</p>
+        </div>
+    </section>
+
+    <section class="video-showcase-section">
+        <div class="construccion-video-wrapper">
+            <video autoplay loop muted playsinline class="construccion-video">
+                <source src="assets/videos/video-construccion.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+        </div>
+    </section>
+
+    <section class="materializacion-section" style="padding: 8rem 5%; background-color: var(--dark);">
+        <div style="text-align: center; margin-bottom: 4rem; position: relative; z-index: 2;">
+            <h2 class="metricas-title" style="font-size: 2.5rem;">DE LA VISIÓN A LA REALIDAD</h2>
+            <p class="metricas-desc" style="max-width: 600px; margin: 0 auto;">
+                Desliza el escáner para presenciar cómo transformamos trazos de ingeniería en obras maestras arquitectónicas.
+            </p>
+        </div>
+
+        <div class="escaner-container" id="escanerContainer">
+            <div class="escaner-label label-realidad">REALIDAD</div>
+            <div class="escaner-label label-vision">VISIÓN (PLANO)</div>
+
+            <div class="escaner-img img-realidad" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+
+            <div class="escaner-img img-vision" id="imgVision" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); filter: grayscale(100%) contrast(1.2);"></div>
+
+            <div class="escaner-laser" id="escanerLaser">
+                <div class="escaner-handle">
+                    <i class="fas fa-angle-left"></i>
+                    <i class="fas fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="plano-interactivo-section" style="padding: 8rem 5%; background-color: var(--dark-2);">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="metricas-title">DISEÑO Y DISTRIBUCIÓN 360°</h2>
+            <p class="metricas-desc" style="max-width: 700px; margin: 0 auto;">Explora la conceptualización de nuestros espacios. Visualiza los acabados en la galería y haz clic en el plano técnico interactivo para conocer los detalles de cada área.</p>
+        </div>
+
+        <div class="galeria-superior-grid">
+            <div class="zoom-img-container">
+                <div class="zoom-img" style="background-image: url('assets/fotos/sala.jfif'); background-color: #222;"></div>
+            </div>
+            <div class="zoom-img-container">
+                <div class="zoom-img" style="background-image: url('assets/fotos/comedor-3.jfif'); background-color: #2a2a2a;"></div>
+            </div>
+            <div class="zoom-img-container">
+                <div class="zoom-img" style="background-image: url('assets/fotos/estudio.jfif'); background-color: #333;"></div>
+            </div>
+        </div>
+
+        <div class="plano-container" style="margin: 5rem auto;">
+            <div class="plano-svg-wrapper">
+                <svg viewBox="0 0 800 600" class="blueprint-svg">
+                    <rect x="90" y="90" width="570" height="420" fill="none" stroke="var(--gold)" stroke-width="4"/>
+                    
+                    <g class="room-group">
+                        <rect x="100" y="100" width="200" height="150" class="room-path" data-title="Cocina Gourmet" data-desc="Acabados en cuarzo y gabinetes de melamina hidrófuga. Diseño ergonómico con isla central y anaqueles altos." data-icon="🍳"/>
+                        <text x="200" y="130" text-anchor="middle" class="room-label">COCINA</text>
+                        <path d="M 110 110 L 110 240 L 140 240 L 140 110 Z" class="room-furniture"/> <rect x="170" y="160" width="80" height="40" rx="4" class="room-furniture"/> <circle cx="125" cy="190" r="8" class="room-furniture"/> <circle cx="125" cy="210" r="8" class="room-furniture"/> </g>
+
+                    <g class="room-group">
+                        <rect x="300" y="100" width="200" height="150" class="room-path" data-title="Comedor Principal" data-desc="Espacio amplio para mesa de 6 a 8 comensales. Iluminación colgante directa y excelente ventilación cruzada." data-icon="🍽️"/>
+                        <text x="400" y="130" text-anchor="middle" class="room-label">COMEDOR</text>
+                        <rect x="350" y="145" width="100" height="50" rx="4" class="room-furniture"/> <rect x="360" y="135" width="20" height="10" rx="2" class="room-furniture"/>
+                        <rect x="390" y="135" width="20" height="10" rx="2" class="room-furniture"/>
+                        <rect x="420" y="135" width="20" height="10" rx="2" class="room-furniture"/>
+                        <rect x="360" y="195" width="20" height="10" rx="2" class="room-furniture"/>
+                        <rect x="390" y="195" width="20" height="10" rx="2" class="room-furniture"/>
+                        <rect x="420" y="195" width="20" height="10" rx="2" class="room-furniture"/>
+                    </g>
+
+                    <g class="room-group">
+                        <rect x="500" y="100" width="150" height="200" class="room-path" data-title="Área de Estudio" data-desc="Zona silenciosa ideal para Home Office. Conectividad estructurada, escritorio empotrado y luz natural." data-icon="💻"/>
+                        <text x="575" y="130" text-anchor="middle" class="room-label">ESTUDIO</text>
+                        <rect x="520" y="150" width="30" height="80" class="room-furniture"/> <circle cx="570" cy="190" r="12" class="room-furniture"/> <rect x="590" y="240" width="45" height="45" rx="5" class="room-furniture"/> </g>
+
+                    <g class="room-group">
+                        <rect x="250" y="250" width="400" height="250" class="room-path" data-title="Sala de Estar" data-desc="El corazón del hogar. Diseño de concepto abierto con ventanales de piso a techo y altura superior a 3 metros." data-icon="🛋️"/>
+                        <text x="450" y="290" text-anchor="middle" class="room-label">SALA DE ESTAR</text>
+                        <path d="M 300 330 L 460 330 L 460 370 L 340 370 L 340 450 L 300 450 Z" class="room-furniture" stroke-linejoin="round"/> 
+                        <rect x="360" y="390" width="60" height="40" rx="8" class="room-furniture"/> <rect x="580" y="340" width="20" height="120" class="room-furniture"/> <line x1="590" y1="360" x2="590" y2="440" stroke="#fff" stroke-width="4" stroke-linecap="round"/> <rect x="330" y="360" width="180" height="120" class="room-furniture" stroke-dasharray="6,6"/> </g>
+
+                    <g class="room-group">
+                        <rect x="100" y="250" width="150" height="250" class="room-path" data-title="Recibidor y Baño Social" data-desc="Entrada elegante con escalera flotante y baño de visitas equipado con piezas sanitarias de lujo." data-icon="🚽"/>
+                        <text x="175" y="280" text-anchor="middle" class="room-label">RECIBIDOR</text>
+                        <line x1="110" y1="320" x2="160" y2="320" class="room-furniture"/><line x1="110" y1="340" x2="160" y2="340" class="room-furniture"/>
+                        <line x1="110" y1="360" x2="160" y2="360" class="room-furniture"/><line x1="110" y1="380" x2="160" y2="380" class="room-furniture"/>
+                        <line x1="110" y1="400" x2="160" y2="400" class="room-furniture"/><line x1="110" y1="420" x2="160" y2="420" class="room-furniture"/>
+                        <line x1="160" y1="320" x2="160" y2="420" class="room-furniture"/> <rect x="180" y="400" width="60" height="90" class="room-furniture"/> <ellipse cx="210" cy="420" rx="12" ry="16" class="room-furniture"/> <rect x="195" y="465" width="30" height="15" class="room-furniture"/> </g>
+                    
+                    <line x1="300" y1="100" x2="300" y2="250" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+                    <line x1="500" y1="100" x2="500" y2="300" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+                    <line x1="100" y1="250" x2="500" y2="250" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+                    
+                    <path d="M 175 500 Q 200 480 200 450" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="175" y1="500" x2="200" y2="450" stroke="rgba(201,168,76,0.8)" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <div class="plano-info-panel">
+                <div id="roomInfoContent">
+                    <div class="room-icon-display">🏛️</div>
+                    <h3 class="room-title-display">Selecciona un área</h3>
+                    <p class="room-desc-display">Haz clic en cualquier habitación del plano para revelar las especificaciones técnicas y los materiales utilizados en esa zona.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="galeria-inferior-grid">
+            <div class="zoom-img-container">
+                <div class="zoom-img" style="background-image: url('assets/fotos/2-planta.jfif'); background-color: #444;"></div>
+            </div>
+            <div class="zoom-img-container">
+                <div class="zoom-img" style="background-image: url('assets/fotos/bano.jfif'); background-color: #555;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display: inline-block; margin-bottom: 2rem; font-size: 2rem; color: var(--cream);">TERRA <span style="color: var(--gold);">Ecuador</span></a>
+                <h4>Más TERRA</h4>
+                <ul>
+                    <li><a href="#">Inmuebles en Ecuador</a></li>
+                    <li><a href="#">Publicar tu Inmueble</a></li>
+                    <li><a href="#">Ayuda y Soporte</a></li>
+                    <li><a href="#">Mapa del sitio</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Divisiones</h4>
+                <ul>
+                    <li><a href="compra-venta.html">Inmobiliaria & Corretaje</a></li>
+                    <li><a href="construccion.html">Constructora & Obras Civiles</a></li>
+                    <li><a href="#">Planta Bloquera y Materiales</a></li>
+                    <li><a href="#">Centro de Servicios Múltiples</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Cobertura</h4>
+                <ul>
+                    <li><a href="#">Cañar: El Tambo, Suscal</a></li>
+                    <li><a href="#">Azuay: Cuenca, Paute</a></li>
+                    <li><a href="#">Guayas: Guayaquil, Samborondón</a></li>
+                    <li><a href="#">Pichincha: Quito, Cumbayá</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank">FB</a>
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+                
+                <h4 style="margin-top: 2rem;">Apps</h4>
+                <div class="footer-apps">
+                    <a href="#" class="app-btn">
+                        <span class="icon">🍎</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <span class="icon">▶️</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-brand-group">
+                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; line-height: 1;">Grupo<br>TERRA</span>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; Copyright 2026 terraecuador.com</p>
+                    <p>
+                        <a href="#">Términos de Uso</a> &nbsp;|&nbsp; 
+                        <a href="#">Condiciones de Contratación</a> &nbsp;|&nbsp; 
+                        <a href="#">Política de privacidad</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

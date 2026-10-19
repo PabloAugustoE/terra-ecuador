@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra y Venta | TERRA Ecuador</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+
+    <nav class="nav-internal"> 
+        <div class="nav-container">
+            <a href="index.html" class="logo">TERRA <span>Ecuador</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="compra-venta.html" style="color: var(--gold) !important;">Compra/Venta</a></li>
+                <li><a href="renta.html">En Renta</a></li>
+                <li><a href="construccion.html">Construcción</a></li>
+            </ul>
+            
+            <a href="index.html#contacto" class="btn-nav">Contactar</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="section-tag reveal" style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem;">Mercado Inmobiliario</div>
+        <h1 class="section-title reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem;">Gestión de <em style="color: var(--gold);">Propiedades</em></h1>
+        <p class="section-desc reveal" style="max-width: 600px; margin: 1.5rem auto 0; color: var(--text-muted); line-height: 1.6;">Conectamos oportunidades. Ya sea que busques el lugar ideal para invertir o necesites vender tu propiedad con el respaldo de expertos.</p>
+    </header>
+
+    <div class="action-tabs reveal">
+        <button class="tab-btn active" id="btnComprar">Quiero Comprar</button>
+        <button class="tab-btn" id="btnVender">Quiero Vender</button>
+    </div>
+
+    <section id="seccionComprar" class="catalog-layout">
+        
+        <aside class="sidebar reveal">
+            <div class="filter-group">
+                <h4>Tipo de Propiedad</h4>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo" value="lote"> Lotes / Sitios</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo" value="hacienda"> Haciendas</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo" value="casa"> Casas Residenciales</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Entorno Geográfico</h4>
+                <label class="filter-option"><input type="radio" name="zona" class="filtro-zona" value="urbano"> Urbano</label>
+                <label class="filter-option"><input type="radio" name="zona" class="filtro-zona" value="rural"> Rural</label>
+                <label class="filter-option"><input type="radio" name="zona" class="filtro-zona" value="todos" checked> Todos</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Estado del Proyecto</h4>
+                <label class="filter-option"><input type="checkbox" class="filtro-estado" value="preventa"> Preventa / Planos</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-estado" value="listo"> Listo para entrega</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Provincia</h4>
+                <select id="filtroProvincia" style="width:100%; padding: 0.8rem; background: var(--dark-3); border: 1px solid rgba(255,255,255,0.1); color: var(--cream); font-size: 0.8rem; border-radius: 4px;">
+                    <option value="todas">Todo el Ecuador</option>
+                    <option value="azuay">Azuay</option>
+                    <option value="bolivar">Bolívar</option>
+                    <option value="canar">Cañar</option>
+                    <option value="carchi">Carchi</option>
+                    <option value="chimborazo">Chimborazo</option>
+                    <option value="cotopaxi">Cotopaxi</option>
+                    <option value="el-oro">El Oro</option>
+                    <option value="esmeraldas">Esmeraldas</option>
+                    <option value="galapagos">Galápagos</option>
+                    <option value="guayas">Guayas</option>
+                    <option value="imbabura">Imbabura</option>
+                    <option value="loja">Loja</option>
+                    <option value="los-rios">Los Ríos</option>
+                    <option value="manabi">Manabí</option>
+                    <option value="morona-santiago">Morona Santiago</option>
+                    <option value="napo">Napo</option>
+                    <option value="orellana">Orellana</option>
+                    <option value="pastaza">Pastaza</option>
+                    <option value="pichincha">Pichincha</option>
+                    <option value="santa-elena">Santa Elena</option>
+                    <option value="santo-domingo">Santo Domingo de los Tsáchilas</option>
+                    <option value="sucumbios">Sucumbíos</option>
+                    <option value="tungurahua">Tungurahua</option>
+                    <option value="zamora-chinchipe">Zamora Chinchipe</option>
+                </select>
+            </div>
+
+            <button id="btnAplicarFiltros" class="btn-submit-solid" style="margin-top: 0;">Aplicar Filtros</button>
+        </aside>
+
+        <div class="grid-cards" id="contenedorPropiedades">
+            
+            <div class="interactive-card propiedad-item" data-tipo="lote" data-zona="urbano" data-estado="preventa" data-provincia="canar">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <div class="hero-badge" style="font-size: 0.6rem; margin-bottom: 1rem; display: inline-block; background: rgba(201,168,76,0.2); color: var(--gold); padding: 4px 10px; border-radius: 4px;">Preventa</div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Lote Sector San José</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Terreno plano de 500m² con acceso a servicios básicos. Ideal para proyecto residencial.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cañar, El Tambo</span>
+                    <strong style="color: var(--gold);">$45,000</strong>
+                </div>
+            </div>
+
+            <div class="interactive-card propiedad-item" data-tipo="hacienda" data-zona="rural" data-estado="listo" data-provincia="azuay">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1598885511440-218a568ce3d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <div class="hero-badge" style="font-size: 0.6rem; margin-bottom: 1rem; display: inline-block; background: rgba(255,255,255,0.1); color: var(--cream); padding: 4px 10px; border-radius: 4px;">Listo</div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Hacienda "La Esperanza"</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">15 hectáreas productivas, incluye casa de campo estilo rústico y establos.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Azuay, Cuenca</span>
+                    <strong style="color: var(--gold);">$320,000</strong>
+                </div>
+            </div>
+
+            <div class="interactive-card propiedad-item" data-tipo="casa" data-zona="urbano" data-estado="listo" data-provincia="guayas">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <div class="hero-badge" style="font-size: 0.6rem; margin-bottom: 1rem; display: inline-block; background: rgba(255,255,255,0.1); color: var(--cream); padding: 4px 10px; border-radius: 4px;">Listo</div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Casa Minimalista V1</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Vivienda de estreno con acabados de primera. Construida con bloques TERRA.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Guayas, Samborondón</span>
+                    <strong style="color: var(--gold);">$185,000</strong>
+                </div>
+            </div>
+
+            <div class="interactive-card propiedad-item" data-tipo="lote" data-zona="rural" data-estado="listo" data-provincia="canar">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <div class="hero-badge" style="font-size: 0.6rem; margin-bottom: 1rem; display: inline-block; background: rgba(255,255,255,0.1); color: var(--cream); padding: 4px 10px; border-radius: 4px;">Listo</div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Sitio Agrícola</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">2 hectáreas de tierra fértil, acceso al río y vía lastrada.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cañar, Suscal</span>
+                    <strong style="color: var(--gold);">$28,000</strong>
+                </div>
+            </div>
+            
+            <div id="mensajeSinResultados" style="display: none; grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: rgba(255,255,255,0.02); border: 1px dashed rgba(201,168,76,0.3); border-radius: 4px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; filter: grayscale(1); opacity: 0.5;">🔍</div>
+                <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 0.5rem;">No encontramos propiedades exactas</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Intenta ajustando los filtros, quitando algunas opciones o cambiando la provincia.</p>
+                <button onclick="location.reload()" class="btn-submit-solid" style="max-width: 250px; margin: 2rem auto 0;">Limpiar Filtros</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="seccionVender" class="vender-layout">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--cream);">Vende con <em style="color: var(--gold);">Nosotros</em></h2>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-top: 1rem;">Ingresa los datos de tu propiedad. Nuestro equipo técnico realizará una valoración del inmueble y se pondrá en contacto contigo para sumarla a nuestro catálogo.</p>
+        </div>
+
+        <form id="formVender" class="contacto-form-wrapper" style="padding: 2rem; background: var(--dark-2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tu Nombre</label>
+                    <input type="text" required placeholder="Ej. Ana López">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono / WhatsApp</label>
+                    <input type="tel" required placeholder="+593...">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo de Propiedad a Vender</label>
+                    <select required>
+                        <option value="">Seleccionar...</option>
+                        <option value="lote">Lote / Terreno</option>
+                        <option value="hacienda">Hacienda / Finca</option>
+                        <option value="casa">Casa Residencial</option>
+                        <option value="departamento">Departamento</option>
+                        <option value="local">Local Comercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ubicación (Ciudad/Provincia)</label>
+                    <input type="text" required placeholder="Ej. El Tambo, Cañar">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Descripción y Características (M2, cuartos, estado)</label>
+                <textarea rows="4" required placeholder="Describe brevemente la propiedad..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit-solid">Enviar Solicitud de Venta</button>
+            <p id="venderStatus" style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: #4CAF50; display: none;">¡Solicitud enviada! Nos pondremos en contacto contigo pronto.</p>
+        </form>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display: inline-block; margin-bottom: 2rem; font-size: 2rem; color: var(--cream);">TERRA <span style="color: var(--gold);">Ecuador</span></a>
+                <h4>Más TERRA</h4>
+                <ul>
+                    <li><a href="#">Inmuebles en Ecuador</a></li>
+                    <li><a href="#">Publicar tu Inmueble</a></li>
+                    <li><a href="#">Ayuda y Soporte</a></li>
+                    <li><a href="#">Mapa del sitio</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Divisiones</h4>
+                <ul>
+                    <li><a href="compra-venta.html">Inmobiliaria & Corretaje</a></li>
+                    <li><a href="construccion.html">Constructora & Obras Civiles</a></li>
+                    <li><a href="#">Planta Bloquera y Materiales</a></li>
+                    <li><a href="#">Centro de Servicios Múltiples</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Cobertura</h4>
+                <ul>
+                    <li><a href="#">Cañar: El Tambo, Suscal</a></li>
+                    <li><a href="#">Azuay: Cuenca, Paute</a></li>
+                    <li><a href="#">Guayas: Guayaquil, Samborondón</a></li>
+                    <li><a href="#">Pichincha: Quito, Cumbayá</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank">FB</a>
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+                
+                <h4 style="margin-top: 2rem;">Apps</h4>
+                <div class="footer-apps">
+                    <a href="#" class="app-btn">
+                        <span class="icon">🍎</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <span class="icon">▶️</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-brand-group">
+                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; line-height: 1;">Grupo<br>TERRA</span>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; Copyright 2026 terraecuador.com</p>
+                    <p>
+                        <a href="#">Términos de Uso</a> &nbsp;|&nbsp; 
+                        <a href="#">Condiciones de Contratación</a> &nbsp;|&nbsp; 
+                        <a href="#">Política de privacidad</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formVender = document.getElementById('formVender');
+            const statusMsg = document.getElementById('venderStatus');
+            const submitBtn = formVender ? formVender.querySelector('button[type="submit"]') : null;
+
+            if (formVender && statusMsg && submitBtn) {
+                formVender.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = "Enviando...";
+                    submitBtn.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        formVender.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.opacity = '1';
+                        statusMsg.style.display = 'block';
+                        
+                        setTimeout(() => {
+                            statusMsg.style.display = 'none';
+                        }, 5000);
+                    }, 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

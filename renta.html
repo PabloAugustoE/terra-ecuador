@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Renta | TERRA Ecuador</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="nav-internal"> 
+        <div class="nav-container">
+            <a href="index.html" class="logo">TERRA <span>Ecuador</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="compra-venta.html">Compra/Venta</a></li>
+                <li><a href="renta.html" style="color: var(--gold) !important;">En Renta</a></li>
+                <li><a href="construccion.html">Construcción</a></li>
+            </ul>
+            
+            <a href="index.html#contacto" class="btn-nav">Contactar</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="section-tag reveal" style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem;">Gestión de Alquileres</div>
+        <h1 class="section-title reveal" style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem;">Propiedades <em style="color: var(--gold);">en Renta</em></h1>
+        <p class="section-desc reveal" style="max-width: 600px; margin: 1.5rem auto 0; color: var(--text-muted); line-height: 1.6;">Encuentra el espacio ideal para vivir o rentabiliza tu propiedad con nuestra gestión de arrendamiento.</p>
+    </header>
+
+    <div class="action-tabs reveal">
+        <button class="tab-btn active" id="btnRentar">Quiero Rentar</button>
+        <button class="tab-btn" id="btnPonerRenta">Poner en Renta</button>
+    </div>
+
+    <section id="seccionRentar" class="catalog-layout">
+        
+        <aside class="sidebar reveal">
+            <div class="filter-group">
+                <h4>Tipo de Inmueble</h4>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo-renta" value="familiar"> Vivienda Familiar</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo-renta" value="estudiantil"> Renta Estudiantil</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo-renta" value="mini"> Minidepartamentos</label>
+                <label class="filter-option"><input type="checkbox" class="filtro-tipo-renta" value="local"> Local Comercial</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Entorno</h4>
+                <label class="filter-option"><input type="radio" name="zona-renta" class="filtro-zona-renta" value="urbano"> Urbano</label>
+                <label class="filter-option"><input type="radio" name="zona-renta" class="filtro-zona-renta" value="rural"> Rural</label>
+                <label class="filter-option"><input type="radio" name="zona-renta" class="filtro-zona-renta" value="todos" checked> Todos</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Provincia</h4>
+                <select id="filtroProvinciaRenta" style="width:100%; padding: 0.8rem; background: var(--dark-3); border: 1px solid rgba(255,255,255,0.1); color: var(--cream); font-size: 0.8rem; border-radius: 4px;">
+                    <option value="todas">Todo el Ecuador</option>
+                    <option value="azuay">Azuay</option>
+                    <option value="bolivar">Bolívar</option>
+                    <option value="canar">Cañar</option>
+                    <option value="carchi">Carchi</option>
+                    <option value="chimborazo">Chimborazo</option>
+                    <option value="cotopaxi">Cotopaxi</option>
+                    <option value="el-oro">El Oro</option>
+                    <option value="esmeraldas">Esmeraldas</option>
+                    <option value="galapagos">Galápagos</option>
+                    <option value="guayas">Guayas</option>
+                    <option value="imbabura">Imbabura</option>
+                    <option value="loja">Loja</option>
+                    <option value="los-rios">Los Ríos</option>
+                    <option value="manabi">Manabí</option>
+                    <option value="morona-santiago">Morona Santiago</option>
+                    <option value="napo">Napo</option>
+                    <option value="orellana">Orellana</option>
+                    <option value="pastaza">Pastaza</option>
+                    <option value="pichincha">Pichincha</option>
+                    <option value="santa-elena">Santa Elena</option>
+                    <option value="santo-domingo">Santo Domingo de los Tsáchilas</option>
+                    <option value="sucumbios">Sucumbíos</option>
+                    <option value="tungurahua">Tungurahua</option>
+                    <option value="zamora-chinchipe">Zamora Chinchipe</option>
+                </select>
+            </div>
+            
+            <button id="btnAplicarFiltrosRenta" class="btn-submit-solid" style="margin-top: 0;">Aplicar Filtros</button>
+        </aside>
+
+        <div class="grid-cards" id="contenedorRentas">
+            
+            <div class="interactive-card propiedad-renta" data-tipo="mini" data-zona="urbano" data-provincia="azuay">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Minidepartamento Centro</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Ideal para estudiantes. A 5 minutos de la universidad principal.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Azuay, Cuenca</span>
+                    <strong style="color: var(--gold);">$250/mes</strong>
+                </div>
+            </div>
+
+            <div class="interactive-card propiedad-renta" data-tipo="familiar" data-zona="urbano" data-provincia="canar">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Casa Familiar (2 Pisos)</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Amplia vivienda con patio trasero, garaje para 2 autos.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cañar, Azogues</span>
+                    <strong style="color: var(--gold);">$450/mes</strong>
+                </div>
+            </div>
+            
+            <div class="interactive-card propiedad-renta" data-tipo="estudiantil" data-zona="rural" data-provincia="canar">
+                <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1de2d96674?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-size: cover; background-position: center;"></div>
+                <h3 class="card-title" style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cream);">Suite Independiente</h3>
+                <p class="card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Espacio individual moderno. Entorno rural tranquilo y seguro.</p>
+                <div class="card-footer" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cañar, El Tambo</span>
+                    <strong style="color: var(--gold);">$180/mes</strong>
+                </div>
+            </div>
+
+            <div id="mensajeSinRentas" style="display: none; grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: rgba(255,255,255,0.02); border: 1px dashed rgba(201,168,76,0.3); border-radius: 4px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; filter: grayscale(1); opacity: 0.5;">🔍</div>
+                <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 0.5rem;">No hay alquileres disponibles</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Intenta ajustando los filtros o cambiando la provincia.</p>
+                <button onclick="location.reload()" class="btn-submit-solid" style="max-width: 250px; margin: 2rem auto 0;">Limpiar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionPonerRenta" class="poner-renta-layout">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 class="section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--cream);">Rentabiliza tu <em style="color: var(--gold);">Inmueble</em></h2>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-top: 1rem;">Nos encargamos de encontrar al inquilino ideal. Administramos tu propiedad con contratos legales y garantías que aseguran tu inversión.</p>
+        </div>
+        
+        <form id="formRenta" class="contacto-form-wrapper" style="padding: 2rem; background: var(--dark-2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tu Nombre</label>
+                    <input type="text" placeholder="Ej. Ana López" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono / WhatsApp</label>
+                    <input type="tel" placeholder="+593..." required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo de Inmueble</label>
+                    <select required>
+                        <option value="">Seleccionar...</option>
+                        <option>Vivienda Familiar</option>
+                        <option>Renta Estudiantil</option>
+                        <option>Minidepartamento</option>
+                        <option>Local Comercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <select required>
+                        <option value="">Seleccionar...</option>
+                        <option>Azuay</option>
+                        <option>Cañar</option>
+                        <option>Guayas</option>
+                        <option>Pichincha</option>
+                        <option>Otra...</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Detalles del Inmueble (Cuartos, Garaje, Valor esperado)</label>
+                <textarea rows="4" required placeholder="Describe brevemente el espacio..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit-solid">Solicitar Asesoría de Arrendamiento</button>
+            <p id="rentaStatus" style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: #4CAF50; display: none;">¡Solicitud enviada! Nos pondremos en contacto contigo pronto.</p>
+        </form>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display: inline-block; margin-bottom: 2rem; font-size: 2rem; color: var(--cream);">TERRA <span style="color: var(--gold);">Ecuador</span></a>
+                <h4>Más TERRA</h4>
+                <ul>
+                    <li><a href="#">Inmuebles en Ecuador</a></li>
+                    <li><a href="#">Publicar tu Inmueble</a></li>
+                    <li><a href="#">Ayuda y Soporte</a></li>
+                    <li><a href="#">Mapa del sitio</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Divisiones</h4>
+                <ul>
+                    <li><a href="compra-venta.html">Inmobiliaria & Corretaje</a></li>
+                    <li><a href="construccion.html">Constructora & Obras Civiles</a></li>
+                    <li><a href="#">Planta Bloquera y Materiales</a></li>
+                    <li><a href="#">Centro de Servicios Múltiples</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Cobertura</h4>
+                <ul>
+                    <li><a href="#">Cañar: El Tambo, Suscal</a></li>
+                    <li><a href="#">Azuay: Cuenca, Paute</a></li>
+                    <li><a href="#">Guayas: Guayaquil, Samborondón</a></li>
+                    <li><a href="#">Pichincha: Quito, Cumbayá</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="footer-social">
+                    <a href="https://facebook.com" target="_blank">FB</a>
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+                
+                <h4 style="margin-top: 2rem;">Apps</h4>
+                <div class="footer-apps">
+                    <a href="#" class="app-btn">
+                        <span class="icon">🍎</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <span class="icon">▶️</span>
+                        <div class="app-text">
+                            <small>Disponible en</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-brand-group">
+                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; line-height: 1;">Grupo<br>TERRA</span>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; Copyright 2026 terraecuador.com</p>
+                    <p>
+                        <a href="#">Términos de Uso</a> &nbsp;|&nbsp; 
+                        <a href="#">Condiciones de Contratación</a> &nbsp;|&nbsp; 
+                        <a href="#">Política de privacidad</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formRenta = document.getElementById('formRenta');
+            const statusMsg = document.getElementById('rentaStatus');
+            const submitBtn = formRenta ? formRenta.querySelector('button[type="submit"]') : null;
+
+            if (formRenta && statusMsg && submitBtn) {
+                formRenta.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Estado de envío
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = "Enviando...";
+                    submitBtn.style.opacity = '0.7';
+                    submitBtn.disabled = true;
+                    
+                    // Simular espera de red
+                    setTimeout(() => {
+                        formRenta.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.opacity = '1';
+                        submitBtn.disabled = false;
+                        statusMsg.style.display = 'block';
+                        
+                        // Ocultar mensaje después de unos segundos
+                        setTimeout(() => {
+                            statusMsg.style.display = 'none';
+                        }, 5000);
+                    }, 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
